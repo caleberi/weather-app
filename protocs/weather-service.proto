@@ -1,0 +1,70 @@
+
+syntax = "proto3";
+
+package WeatherPackage;
+
+service WeatherService{
+    rpc RetrieveAllWeather (Void) returns (WeatherData);
+    rpc RetrieveWeatherByQuery (WeatherRequest) returns (WeatherData);
+    rpc SaveWeatherToFile(WeatherRequest) returns (WeatherData) {}
+}
+
+message Void{}
+
+
+message WeatherRequest{
+    int32 id = 1;
+    string country = 2;
+    string state_code = 3;
+    string unit = 4;
+    string lang = 5;
+    string mode = 6;
+    Point point = 7;
+    bool set_unit = 8;
+    bool set_lang = 9;
+    bool set_mode = 10;
+}
+
+message Point{
+    float lon = 1;
+    float lat = 2;
+}
+
+
+
+// using composition rather than embedding : quite similar 
+message WeatherData{
+    string dt=1;
+    Wind wind =2; 
+    Point coord =3;
+    string base =4;
+    int64 visibility =5;
+    int32 cod =6;
+    Cloud clouds=7;
+    repeated WeatherIntepretation  weather= 8;
+    map<string, float> main=9;
+}
+
+
+
+message WeatherIntepretation{
+    int32 id =1;
+    string main=2;
+    string description = 3;
+    string icon =4;
+}
+
+message Cloud{
+    string all =1;
+}
+
+message Wind{
+    string speed = 1;
+    string deg =  2;
+    string gust =  3;
+}
+
+message Time{
+    string dt_txt=1;
+}
+
