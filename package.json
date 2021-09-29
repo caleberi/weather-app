@@ -1,0 +1,25 @@
+{
+  "name": "weather-grpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "grpc::client": "node client/weather-client.js",
+    "grpc::server": "node server/weather-server.js"
+  },
+  "keywords": [
+    "gRPC",
+    "Nodejs",
+    "JavaScript"
+  ],
+  "author": "hebronace",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.3.7",
+    "@grpc/proto-loader": "^0.6.5",
+    "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
+    "grpc": "^1.24.11",
+    "lodash": "^4.17.21"
+  }
+}
