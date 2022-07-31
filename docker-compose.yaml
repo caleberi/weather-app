@@ -1,0 +1,27 @@
+version: "3"
+services:
+  server:
+    build: ./app
+    volumes:
+      - ./app:/app
+    ports:
+      - "8080:9090"
+    command: bash -c "npm install & npm run grpc::server"
+    hostname: server
+
+  app:
+    build: ./app
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/frontend/node_modules
+    ports:
+      - "3000:3000"
+    hostname: app
+
+  envoy:
+    image: envoyproxy/envoy-dev:e4955aed5694f9935d674419dbb364e744f697b4
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    ports:
+      - "9090:9090"
+      - "8080:8080"
