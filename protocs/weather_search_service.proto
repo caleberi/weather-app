@@ -1,0 +1,180 @@
+
+syntax = "proto3";
+
+package weather;
+
+// Void represent empty data request
+message Void{}
+
+/*
+* LatLong represents the geographical point of a place
+*/
+message LatLong {
+    float lat = 1;
+    float lon = 2;
+}
+
+enum Mode {
+    XML = 0;
+    JSON = 1;
+    HTML = 2;
+}
+
+enum Unit{
+    STANDARD = 0;
+    METRIC = 1;
+    IMPERIAL =2;
+}
+
+/* SearchQueryRequest represents a search query, which retrieves 
+* the necessary information to build a graph table  about all weather data in a specific  
+* geographical location */
+message SearchQueryRequest{
+    LatLong lat_lon = 1;
+    optional Mode mode = 2;
+    optional Unit unit = 3;
+    string lang = 4;
+}
+
+
+message SearchQueryData{
+    LatLong coord =1;
+    /*
+    * Weather represents the interpreatation of the weather at the 
+    * specified location
+    */
+    message Weather{
+        int32 id =1;
+        string main=2;
+        string description = 3;
+        string icon =4;
+    }
+    repeated Weather weather= 2;
+    string base =3;
+    message MainData{
+        float temp = 1;
+        float temp_min = 2;
+        float temp_max = 3;
+        float humidity = 4;
+        float feels_like = 5;
+        float pressure = 6;
+        float sea_level = 7;
+        float grnd_level = 8;
+        float temp_kf = 9;
+    }
+    MainData main=4;
+    int64 visibility =5;
+    // Wind represent the current wind data at the geopoint
+    message Wind{
+        float speed = 1;
+        float deg =  2;
+        float gust =  3;
+    }
+    Wind wind = 6;
+    int64 dt= 7; 
+    // Cloud represent the current cloud data at the geopoint
+    message Cloud{
+        string all =1;
+    }
+    Cloud clouds = 8; 
+    string dt_txt = 9;   
+    int32 pop = 10;
+}
+
+message SearchQueryDataList {
+    optional string cod =1;
+    optional string message = 2;
+    optional string cnt = 3;
+    repeated SearchQueryData list = 4; 
+    message CityData {
+        int32 id = 1;
+        string name =2;
+        map<string,float> coord =3;
+        string country =4;
+        int64  population =5;
+        int64 timezone = 6;
+        int64 sunrise = 7;
+        int64 sunset= 8;
+    } 
+    CityData city  = 5;
+}
+
+message SearchQueryResponse{
+    int32 code =1;
+    optional string message = 2;
+    SearchQueryDataList data = 3;
+}
+
+
+
+message StoreSearchTrieDataRequest{
+    string user_id = 1;
+    repeated string trie_data = 2;
+}
+
+
+message StoreSearchTrieDataResponse{
+    int32 code = 1;
+    string message = 2;
+    optional string error = 3;
+}
+
+
+message RetrieveSearchTrieDataRequest{
+    string user_id = 1;
+}
+
+
+message RetrieveSearchTrieDataResponse{
+    int32 code = 1;
+    string message = 2;
+    repeated string trie_data = 3;
+    optional string error = 4;
+}
+
+message GeopointDataResponse{
+    message GeopointData{
+        string name = 1;
+        map<string,string> local_names = 2;
+        float lat = 3;
+        float lon = 4;
+        string country = 5;
+    }
+    int32 code = 1;
+    string message = 2;
+    repeated GeopointData data = 3;
+    optional string error = 4;
+}
+
+message GeopointDataRequest{
+    optional int32 limit = 1;
+    message GeopointQuery{
+        optional string city_name = 1;
+        optional string state_code = 2;
+        optional string country_code = 3;
+    }
+    GeopointQuery q = 3;
+}
+
+service WeatherSearchService{
+    rpc RetrieveCurrentWeatherByQuery (SearchQueryRequest) returns (SearchQueryResponse);
+    rpc StoreLatestTrie(StoreSearchTrieDataRequest) returns (StoreSearchTrieDataResponse);
+    rpc RetrieveLatestTrie(RetrieveSearchTrieDataRequest) returns (RetrieveSearchTrieDataResponse);
+    rpc RetrieveGeopointByName(GeopointDataRequest) returns (GeopointDataResponse);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
