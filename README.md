@@ -70,6 +70,8 @@ On your browser, open up
 
 The idea was to use GRPC technology in place of REST APIs to serve data to frontend with an assumption that the data is generated from the backend ... database and so on .
 
+![architectural-flow](./flow.svg)
+
 ## What I have been able to achieve.
 
 In the space of a week, I have been able to build out the a auto complete search feature required for helping users to find locations all over the world
