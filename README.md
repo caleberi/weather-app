@@ -83,7 +83,7 @@ First, Users on the app need to search for a location , which is convert to Geop
 
 Due to the fact that I had only about a weeks to run through this project, I was focused on shipping the MVP before implementing additional features. Unfortunately I ran out of time and I could not cover all I had in mind for this project. I have plans to add a few features to enhance the platform. Features including
 
-- Better Search and filter features for easily navigating through numerous products
+- Better Search and filter features for easily navigating through numerous country and addresses
 ## Team behind this project
 
 The contributors that worked on this project consists of
