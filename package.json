@@ -2,11 +2,9 @@
   "name": "weather-grpc",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "grpc::proto::gen": "bash ./proto_gen.sh",
-    "grpc::test::client": "node app/test/client.js",
-    "grpc::server": "nodemon app/backend/server.js"
+    "start": "nodemon ./backend/server.js"
   },
   "keywords": [
     "gRPC",

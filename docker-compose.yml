@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    volumes:
+      - ./backend:/app/backend
+      - /usr/src/app/backend/node_modules
+    ports:
+      - "9090:9090"
+    command: ["npm", "run", "start"]
+    hostname: backend
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app/frontend
+      - /usr/src/app/frontend/node_modules
+    ports:
+      - "3000:3000"
+    command: ["npm", "run", "start"]
+    hostname: frontend
+
+  envoy:
+    build: ./envoy
+    ports:
+      - "10000:10000"
+      - "8080:8080"
+      - "9901:9901"

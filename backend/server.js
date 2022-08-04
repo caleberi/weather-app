@@ -1,7 +1,7 @@
 const path = require("path");
 const PROTO_PATH = path.resolve(
   __dirname,
-  "../../protocs/weather_search_service.proto"
+  "../protocs/weather_search_service.proto"
 );
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
