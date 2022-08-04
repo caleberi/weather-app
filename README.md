@@ -81,7 +81,7 @@ In the space of a week, I have been able to build out the a auto complete search
 First, Users on the app need to search for a location , which is convert to Geopoint using [OpenWeather](https://openweathermap.org/api/geocoding-api) and the forcast of the location is recovered and sent to the UI for rendering .
 ## What I hope to achieve in the future.
 
-Due to the fact that I had only about a weeks to run through this project, I was focused on shipping the MVP before implementing additional features. Unfortunately I ran out of time and I could not cover all I had in mind for this project. I have plans to add a few features to enhance the platform. Features including
+Due to the fact that I had only about a weeks to run through this project, I was focused on shipping the application before implementing additional features. Unfortunately I ran out of time and I could not cover all I had in mind for this project. I have plans to add a few features to enhance the platform. Features including
 
 - Better Search and filter features for easily navigating through numerous country and addresses
 ## Team behind this project
